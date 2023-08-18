@@ -1,0 +1,13 @@
+import { createContext, useContext, useEffect, useState } from 'react';
+import { ethers } from 'ethers';
+
+export const EthersContext = createContext();
+
+export const EthersProvider = ({ children }) => {
+
+    return (
+        <EthersContext.Provider value={{}}>
+            {children}
+        </EthersContext.Provider>
+    )
+}
