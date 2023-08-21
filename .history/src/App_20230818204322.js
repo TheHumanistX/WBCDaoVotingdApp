@@ -9,7 +9,7 @@ const activeChain = "goerli"
 // const clientId = process.env.REACT_APP_THIRDWEB_CLIENT_API_KEY
 
 function App() {
-  // console.log('clientId: ', clientId)
+  console.log('clientId: ', clientId)
   return (
 
         <div className="App">

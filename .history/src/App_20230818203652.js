@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-// import { ThirdwebProvider } from '@thirdweb-dev/react'
+import { ThirdwebProvider } from '@thirdweb-dev/react'
 import { EthersProvider } from './context';
 import { Navigation } from './components'
 import { Home, ViewProposals, SubmitProposals, TokenManagement } from './pages'
@@ -11,7 +11,8 @@ const activeChain = "goerli"
 function App() {
   // console.log('clientId: ', clientId)
   return (
-
+    // <ThirdwebProvider activeChain={activeChain}>
+      {/* <EthersProvider> */}
         <div className="App">
           <Navigation />
           <Routes>
@@ -21,7 +22,8 @@ function App() {
             <Route path='/token-management' element={<TokenManagement />} />
           </Routes>
         </div>
-
+      {/* </EthersProvider> */}
+    {/* </ThirdwebProvider> */}
   );
 }
 

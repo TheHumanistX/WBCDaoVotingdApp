@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDao } from '../context'
 
 const ViewProposals = () => {
 
