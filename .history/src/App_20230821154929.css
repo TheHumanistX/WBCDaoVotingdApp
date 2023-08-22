@@ -1,0 +1,129 @@
+/* CSS RESET */
+  
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+  
+* {
+  margin: 0;
+  text-decoration: none;
+}
+  
+html, body {
+  height: 100%;
+}
+  
+body {
+  font-family: 'Raleway', sans-serif;
+  line-height: 1.5;
+}
+  
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+  
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+  
+input, button, textarea, select {
+  font: inherit;
+}
+  
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+  
+/* Site CSS Code */
+
+html, 
+#root, 
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #000;
+}
+
+/* App */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Navigation */
+
+nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vh 0;
+}
+
+nav>ul {
+  width: 75%;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar__link {
+  display: inline-block;
+  color: #4B4B4B;
+  font-weight: 700;
+  font-size: 1.5rem;
+  transition: transform 300ms, color 300ms;
+}
+
+.navbar__link:hover {
+  color: #C67272;
+  transform: scale(1.05);
+}
+
+.navbar__link.active {
+  color: #C67272;
+}
+
+.connect-wallet__button {
+  position: absolute !important;
+  right: 5vh !important;
+  top: 1vh !important;
+  background-color: #000 !important;
+  color: #4B4B4B !important;
+  border: 2px solid #4B4B4B !important;
+  border-radius: 5px !important;
+  font-size: 1.5rem;
+}
+
+.tw-connect-wallet {
+  top: 2vh !important;
+}
+
+
+/* Home */
+
+section.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Token Management */
+
+.token-management__flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mint-erc20__flex {
+
+}
