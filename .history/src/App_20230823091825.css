@@ -1,0 +1,182 @@
+/* CSS RESET */
+  
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+  
+* {
+  margin: 0;
+  text-decoration: none;
+}
+  
+html, body {
+  height: 100%;
+}
+  
+body {
+  font-family: 'Raleway', sans-serif;
+  line-height: 1.5;
+}
+  
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+  
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+  
+input, button, textarea, select {
+  font: inherit;
+}
+  
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+  
+/* Site CSS Code */
+
+html, 
+#root, 
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #000;
+}
+
+/* App */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: url('./assets/ellipsebg2.svg');
+  background-size: cover;
+}
+
+/* Navigation */
+
+nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vh 0;
+}
+
+nav>ul {
+  width: 65vw;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar__link {
+  display: inline-block;
+  color: #4B4B4B;
+  font-weight: 700;
+  font-size: 1.5rem;
+  transition: transform 300ms, color 300ms;
+}
+
+.navbar__link:hover {
+  color: #C67272;
+  transform: scale(1.05);
+}
+
+.navbar__link.active {
+  color: #C67272;
+}
+
+.connect-wallet__button {
+  position: absolute !important;
+  right: 3vh !important;
+  top: 1vh !important;
+  background-color: #00000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #4B4B4B !important;
+  border-radius: 5px !important;
+  font-size: 1.5rem;
+}
+
+.tw-connect-wallet {
+  top: 2vh !important;
+}
+
+.tw-connected-wallet__address {
+  color: #fff !important;
+}
+
+
+/* Home */
+
+section.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.home__main-logo {
+  margin-left: 6vw;
+}
+
+/* Token Management */
+
+section.token-management {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.token-management__flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10vh;
+  padding: 3rem 6rem;
+  /* border: 2px solid #fff;
+  border-radius: 25px; */
+  /* background-color: rgba(70, 70, 70, 0.2);
+  backdrop-filter: blur(5px); */
+}
+
+.token-management-options__flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2vh;
+  width: 23vw;
+  height: 19vh;
+  padding: 2rem;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.token-management-options__title{
+  font-size: 3rem;
+}
+.token-management-options__text{
+  width: 90%;
+  text-align: center;
+  font-size: 1rem;
+}
+.token-management-options__button{
+  height: 6vh;
+  width: 14vw;
+  border: 0px solid #3D4B99;
+  border-radius: 100px;
+  outline: none;
+  /* background: linear-gradient(90deg, #3D4B99, #C67272); */
+  background-color: rgba(70, 70, 70, 0.4);
+  backdrop-filter: blur(5px);
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
