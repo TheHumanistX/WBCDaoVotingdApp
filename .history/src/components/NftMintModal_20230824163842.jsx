@@ -5,7 +5,7 @@ import { useCrazyFacesMinting } from '../context'
 
 const NftMintModal = ({ handleNFTMint, nftMintModalIsOpen, userERC20Balance, onClose }) => {
     const { nftMintPrice } = useCrazyFacesMinting()
-    const nftMintPriceFormatted = nftMintPrice ? Math.floor(ethers.utils.formatEther(nftMintPrice?.toString())) : 0;
+    const nftMintPriceFormatted = Math.floor(ethers.utils.formatEther(nftMintPrice?.toString()))
     const [quantityToMint, setQuantityToMint] = useState(0)
     
     if (!nftMintModalIsOpen) return null

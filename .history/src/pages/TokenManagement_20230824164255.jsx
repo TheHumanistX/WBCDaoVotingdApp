@@ -13,9 +13,13 @@ const TokenManagement = () => {
 
   // ! Maybe a util function or custom hook to enclose the three functions below?  Look back at marketplace to see how we did that there and see if we can do something similar here.
   // ! Want to create (if possible) a reuseable piece of code that can be passed needed information to handle all three functions, preferably.
+  console.log('TokenManagement - useEffectTrigger: ', useEffectTrigger)
   const userCanMintERC20 = userCanMint
+  console.log('TokenManagement - userCanMintERC20: ', userCanMintERC20)
   const userCanMintNFT = userERC20Balance >= 100
+  console.log('TokenManagement - userCanMintNFT: ', userCanMintNFT)
   const userCanWrapNFT = userNFTBalance >= 1
+  console.log('TokenManagement - userCanWrapNFT: ', userCanWrapNFT)
 
   const handleOpenModal = () => {
     setNftMintModalIsOpen(true)
@@ -39,13 +43,24 @@ const TokenManagement = () => {
   }
 
   const handleNFTMint = async (quantityToMint, setQuantityToMint) => {
-
+    console.log('Clicked on NFT Mint')
+    console.log('User WBC Balance: ', userERC20Balance)
+    console.log('handleNFTMint - turtleCatCoinContract: ', turtleCatCoinContract)
+    console.log('handleNFTMint - crazyFacesMintingContract: ', crazyFacesMintingContract)
     if (turtleCatCoinContract && crazyFacesMintingContract) {
       try {
         const signatureWithArgs = "getWBCPrice(uint256)";
         const totalNFTMintPrice = await crazyFacesMintingContract.functions[signatureWithArgs](quantityToMint);
+        console.log('TokenManagement - handleNFTMing - totalNFTMintPrice: ', totalNFTMintPrice)
+        console.log('TokenManagement - handleNFTMing - typeof(totalNFTMintPrice): ', typeof(totalNFTMintPrice))
+        console.log('Content of totalNFTMintPrice:', JSON.stringify(totalNFTMintPrice, null, 2));
+        console.log('TokenManagement - handleNFTMing - totalNFTMintPrice (string):', totalNFTMintPrice.toString());
+        console.log('TokenManagement - handleNFTMing - totalNFTMintPrice: ', ethers.utils.formatUnits(totalNFTMintPrice[0]))
+        // const totalNFTMintPriceFormatted = ethers.utils.formatEther(totalNFTMintPrice)
         const bigNumberValue = totalNFTMintPrice[0];
 
+        console.log('TokenManagement - handleNFTMing - totalNFTMintPriceFormatted: ', bigNumberValue)
+        console.log('TokenManagement - bytes32: ', ethers.utils.formatBytes32String("MINTER_ROLE"))
         const approvalResponse = await turtleCatCoinContract.approve(CRAZYFACES_MINTING_CONTRACT_ADDRESS, totalNFTMintPrice.toString())
         const approvalReceipt = await approvalResponse.wait()
         console.log("wbc amount approval success", approvalReceipt)
