@@ -328,7 +328,7 @@ section.token-management {
   width: 0px;
   color: #ffffff00;
   font-size: 0px;
-  transition: width 300ms 100ms, color 300ms, font-size 1ms 250ms, opacity 1ms 500ms;
+  transition: width 300ms 100ms, color 400ms, font-size 1ms 300ms, opacity 1ms 500ms;
 }
 
 .slide-out-modal__flex.open {

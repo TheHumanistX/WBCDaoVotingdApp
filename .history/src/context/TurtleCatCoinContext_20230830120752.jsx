@@ -25,7 +25,7 @@ export const TurtleCatCoinProvider = ({ provider, signer, userWallet, children }
                 console.log('TurtleCatCoinContext - userCanMint: ', userCanMint)
                 setUserCanMint(userCanMint);
                 const userERC20Balance = await turtleCatCoinContract.balanceOf(userWallet)
-                console.log('TurtleCatCoinContext - userERC20Balance: ', ethers.utils.formatEther(userERC20Balance))
+                console.log('TurtleCatCoinContext - userERC20Balance: ', userERC20Balance.toNumber().toString())
                 setUserERC20Balance(ethers.utils.formatEther(userERC20Balance))
             }
 

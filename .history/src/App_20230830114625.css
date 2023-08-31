@@ -324,19 +324,25 @@ section.token-management {
 }
 
 .slide-out-modal__flex.closed {
+  /* right: -13vw; */
+  /* visibility: hidden; */
   opacity: 0;
   width: 0px;
   color: #ffffff00;
   font-size: 0px;
-  transition: width 300ms 100ms, color 300ms, font-size 1ms 250ms, opacity 1ms 500ms;
+  /* background-color: #C6909000; */
+  transition: width 300ms 200ms, color 400ms, font-size 1ms 300ms, visibility 1ms 500ms;
 }
 
 .slide-out-modal__flex.open {
+  /* right: 0; */
+  /* visibility: visible; */
   opacity: 100;
   width: 300px;
   color: #fff;
   font-size: 1rem;
-  transition: width 300ms, color 400ms 200ms, font-size 1ms 200ms, opacity 1ms;
+  /* background-color: #C6909060; */
+  transition: width 300ms, color 400ms 200ms, font-size 1ms 200ms, visibility 1ms;
 }
 
 

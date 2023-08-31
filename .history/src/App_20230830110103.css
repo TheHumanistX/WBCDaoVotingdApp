@@ -316,27 +316,19 @@ section.token-management {
   align-items: center;
   z-index: 100;
   top: 20%;
-  right: 0;
   height: 75px;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
+  width: 300px;
   background-color: #C6909060;
+  color: #fff;
+  transition: transform 500ms, right 300ms;
 }
 
 .slide-out-modal__flex.closed {
-  opacity: 0;
-  width: 0px;
-  color: #ffffff00;
-  font-size: 0px;
-  transition: width 300ms 100ms, color 300ms, font-size 1ms 250ms, opacity 1ms 500ms;
+  right: -13vw;
 }
 
 .slide-out-modal__flex.open {
-  opacity: 100;
-  width: 300px;
-  color: #fff;
-  font-size: 1rem;
-  transition: width 300ms, color 400ms 200ms, font-size 1ms 200ms, opacity 1ms;
+  right: 0;
 }
 
 

@@ -31,6 +31,9 @@ const SlideOutNotifModal = ({ topText, bottomText, isOpen, setIsOpen }) => {
             return () => clearTimeout(timer);
         }
     }, [isOpen, setIsOpen]);
+   
+
+    if (!isOpen) return null;
 
     return ReactDOM.createPortal(
         <>

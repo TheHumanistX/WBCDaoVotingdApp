@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-const CombinedModal = ({ topText, bottomText, isOpen }) => {
-    const topTextClass = bottomText ? 'slide-out-modal__top-text' : 'slide-out-modal__top-text one-line-modal';
-    const combinedModalClass = isOpen ? 'slide-out-modal__flex open' : 'slide-out-modal__flex closed';
+const CombinedModal = ({ topText, bottomText }) => {
+    const topTextClass = bottomText ? "slide-out-modal__top-text" : "slide-out-modal__top-text one-line-modal";
 
     return (
         <>
-            <div className={combinedModalClass}>
+            <div className='slide-out-modal__flex'>
                 <div className={topTextClass}>
                     {topText}
                 </div>
@@ -31,9 +30,13 @@ const SlideOutNotifModal = ({ topText, bottomText, isOpen, setIsOpen }) => {
             return () => clearTimeout(timer);
         }
     }, [isOpen, setIsOpen]);
+   
+
+    if (!isOpen) return null;
 
     return ReactDOM.createPortal(
         <>
+            <div className="slide-out-modal__overlay" />
             <CombinedModal
                 topText={topText}
                 bottomText={bottomText}

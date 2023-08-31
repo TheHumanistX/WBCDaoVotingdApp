@@ -318,25 +318,25 @@ section.token-management {
   top: 20%;
   right: 0;
   height: 75px;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
+  /* width: 0px; */
   background-color: #C6909060;
+  /* transition: width 500ms; */
 }
 
 .slide-out-modal__flex.closed {
-  opacity: 0;
+  /* right: -13vw; */
   width: 0px;
   color: #ffffff00;
   font-size: 0px;
-  transition: width 300ms 100ms, color 300ms, font-size 1ms 250ms, opacity 1ms 500ms;
+  transition: width 500ms 100ms, color 100ms, font-size 1ms 100ms;
 }
 
 .slide-out-modal__flex.open {
-  opacity: 100;
+  /* right: 0; */
   width: 300px;
   color: #fff;
   font-size: 1rem;
-  transition: width 300ms, color 400ms 200ms, font-size 1ms 200ms, opacity 1ms;
+  transition: width 500ms, color 400ms 400ms, font-size 100ms 200ms;
 }
 
 

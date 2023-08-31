@@ -320,23 +320,26 @@ section.token-management {
   height: 75px;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
-  background-color: #C6909060;
 }
 
 .slide-out-modal__flex.closed {
-  opacity: 0;
+  /* right: -13vw; */
+  visibility: hidden;
   width: 0px;
   color: #ffffff00;
   font-size: 0px;
-  transition: width 300ms 100ms, color 300ms, font-size 1ms 250ms, opacity 1ms 500ms;
+  /* background-color: #C6909000; */
+  transition: width 300ms 200ms, color 400ms, font-size 1ms 300ms, visibility 1ms 500ms;
 }
 
 .slide-out-modal__flex.open {
-  opacity: 100;
+  /* right: 0; */
+  visibility: visible;
   width: 300px;
   color: #fff;
   font-size: 1rem;
-  transition: width 300ms, color 400ms 200ms, font-size 1ms 200ms, opacity 1ms;
+  /* background-color: #C6909060; */
+  transition: width 300ms, color 400ms 200ms, font-size 1ms 200ms, visibility 1ms;
 }
 
 

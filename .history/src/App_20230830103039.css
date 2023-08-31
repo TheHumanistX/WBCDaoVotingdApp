@@ -130,7 +130,6 @@ section.home {
 /* Token Management */
 
 section.token-management {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -309,34 +308,14 @@ section.token-management {
 /* Slide-Out Modal */
 
 .slide-out-modal__flex {
-  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 100;
-  top: 20%;
-  right: 0;
+  position: absolute;
   height: 75px;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-  background-color: #C6909060;
-}
-
-.slide-out-modal__flex.closed {
-  opacity: 0;
-  width: 0px;
-  color: #ffffff00;
-  font-size: 0px;
-  transition: width 300ms 100ms, color 300ms, font-size 1ms 250ms, opacity 1ms 500ms;
-}
-
-.slide-out-modal__flex.open {
-  opacity: 100;
   width: 300px;
-  color: #fff;
-  font-size: 1rem;
-  transition: width 300ms, color 400ms 200ms, font-size 1ms 200ms, opacity 1ms;
+  background-color: #C6909060;
 }
 
 

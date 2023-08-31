@@ -7,7 +7,7 @@ const CombinedModal = ({ topText, bottomText, isOpen }) => {
 
     return (
         <>
-            <div className={combinedModalClass}>
+            <div className='slide-out-modal__flex'>
                 <div className={topTextClass}>
                     {topText}
                 </div>
@@ -31,6 +31,9 @@ const SlideOutNotifModal = ({ topText, bottomText, isOpen, setIsOpen }) => {
             return () => clearTimeout(timer);
         }
     }, [isOpen, setIsOpen]);
+   
+
+    if (!isOpen) return null;
 
     return ReactDOM.createPortal(
         <>

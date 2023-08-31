@@ -27,30 +27,30 @@ const TokenManagement = () => {
 
 
   // ! REMOVE THIS WHEN NOT NEEDED
-
+  
 
 
 
   useEffect(() => {
-    if (userCanMint) {
-      setUserCanMintERC20(true);
-    } else {
-      setUserCanMintERC20(false);
-    }
+      if (userCanMint) {
+        setUserCanMintERC20(true);
+      } else {
+        setUserCanMintERC20(false);
+      }
+  
+      if (userERC20Balance >= 100) {
+        setUserCanMintNFT(true);
+      } else {
+        setUserCanMintNFT(false);
+      }
+  
+      if (userNFTBalance >= 1) {
+        setUserCanWrapNFT(true);
+      } else {
+        setUserCanWrapNFT(false);
+      }
 
-    if (userERC20Balance >= 100) {
-      setUserCanMintNFT(true);
-    } else {
-      setUserCanMintNFT(false);
-    }
-
-    if (userNFTBalance >= 1) {
-      setUserCanWrapNFT(true);
-    } else {
-      setUserCanWrapNFT(false);
-    }
-
-
+    
   }, [userCanMint, userERC20Balance, userNFTBalance, userWallet])
 
   const flipOpen = () => {
@@ -91,20 +91,14 @@ const TokenManagement = () => {
 
         const approvalResponse = await turtleCatCoinContract.approve(CRAZYFACES_MINTING_CONTRACT_ADDRESS, totalNFTMintPrice.toString())
         const approvalReceipt = await approvalResponse.wait()
-        setIsOpen(true)
-        setTopText('ERC20 amount approval success')
-        setBottomText('See Console For More Information')
-        console.log("ERC20 amount approval success", approvalReceipt)
+        console.log("wbc amount approval success", approvalReceipt)
         console.log("Approval status", approvalReceipt.status)
         if (approvalReceipt.status === 1) {
           try {
             const transactionResponse = await crazyFacesMintingContract.buyNFTs(quantityToMint)
             const transactionReceipt = await transactionResponse.wait()
-            setIsOpen(true)
-            setTopText('NFT mint succesful')
-            setBottomText('See Console For More Information')
-            console.log('NFT Mint Succesful!')
             console.log("transactionReceipt", transactionReceipt)
+            console.log('NFT Mint Succesful!')
             setUseEffectTrigger(prevState => !prevState)
             setQuantityToMint(0)
             setNftMintModalIsOpen(false)
@@ -113,23 +107,14 @@ const TokenManagement = () => {
 
           } catch (err) {
             console.error('Error minting NFTs: ', err)
-            setIsOpen(true)
-            setTopText('Error minting NFT')
-            setBottomText('See Console For More Information')
           }
 
         } else {
           console.log("Approval transaction failed");
-          setIsOpen(true)
-          setTopText('Approval transaction failed')
-          setBottomText('See Console For More Information')
           return null;
         }
       } catch (err) {
         console.error('Error approving ERC20 tokens: ' + err)
-        setIsOpen(true)
-        setTopText('Error approving ERC20 tokens')
-        setBottomText('See Console For More Information')
       }
     }
   }

@@ -100,11 +100,8 @@ const TokenManagement = () => {
           try {
             const transactionResponse = await crazyFacesMintingContract.buyNFTs(quantityToMint)
             const transactionReceipt = await transactionResponse.wait()
-            setIsOpen(true)
-            setTopText('NFT mint succesful')
-            setBottomText('See Console For More Information')
-            console.log('NFT Mint Succesful!')
             console.log("transactionReceipt", transactionReceipt)
+            console.log('NFT Mint Succesful!')
             setUseEffectTrigger(prevState => !prevState)
             setQuantityToMint(0)
             setNftMintModalIsOpen(false)

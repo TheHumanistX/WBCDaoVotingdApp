@@ -23,14 +23,14 @@ const CombinedModal = ({ topText, bottomText, isOpen }) => {
 
 const SlideOutNotifModal = ({ topText, bottomText, isOpen, setIsOpen }) => {
 
-    useEffect(() => {
-        if (isOpen) {
-            const timer = setTimeout(() => {
-                setIsOpen(false)
-            }, 4000);
-            return () => clearTimeout(timer);
-        }
-    }, [isOpen, setIsOpen]);
+    // useEffect(() => {
+    //     if (isOpen) {
+    //         const timer = setTimeout(() => {
+    //             setIsOpen(false)
+    //         }, 4000);
+    //         return () => clearTimeout(timer);
+    //     }
+    // }, [isOpen, setIsOpen]);
 
     return ReactDOM.createPortal(
         <>
