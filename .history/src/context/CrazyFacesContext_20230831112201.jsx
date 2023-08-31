@@ -10,15 +10,16 @@ export const CrazyFacesProvider = ({ provider, signer, userWallet, children }) =
 
     const [crazyFacesContract, setCrazyFacesContract] = useState(null)
     const [userNFTBalance, setUserNFTBalance] = useState(null);
-    const [nftContractName, setNFTContractName] = useState(null); // ! MAY NOT NEED THIS??
+    const [nftContractName, setNFTContractName] = useState(null);
 
     useEffect(() => {
         try {
             if (provider && signer) {
                 const crazyFacesContract = new ethers.Contract(CRAZYFACES_CONTRACT_ADDRESS, crazyFacesABI, signer)
                 setCrazyFacesContract(crazyFacesContract)
-                const userNFTBalance = crazyFacesContract?.balanceOf(userWallet)
+                const userNFTBalance = crazyFacesContract.balanceOf(userWallet)
                 setUserNFTBalance(userNFTBalance)
+                
             }
         } catch (err) {
             console.error('An error occurred in CrazyFacesContext: ', err)

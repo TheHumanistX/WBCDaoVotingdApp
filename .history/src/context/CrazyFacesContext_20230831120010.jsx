@@ -10,7 +10,7 @@ export const CrazyFacesProvider = ({ provider, signer, userWallet, children }) =
 
     const [crazyFacesContract, setCrazyFacesContract] = useState(null)
     const [userNFTBalance, setUserNFTBalance] = useState(null);
-    const [nftContractName, setNFTContractName] = useState(null); // ! MAY NOT NEED THIS??
+    const [nftContractName, setNFTContractName] = useState(null);
 
     useEffect(() => {
         try {

@@ -71,8 +71,6 @@ const TokenManagement = () => {
           setTransactionHash(transactionReceipt.transactionHash) // ! NEED TO FIGURE OUT WHY I CREATED THIS STATE VARIABLE
           console.log('TokenManagement - transactionReceipt: ', transactionReceipt)
           setUseEffectTrigger(prevState => !prevState)
-          setIsOpen(true)
-          setTopText('ERC20 tokens minted successfully.')
         }
       } catch (err) {
         console.error('Error minting ERC20 tokens: ' + err)
@@ -104,6 +102,7 @@ const TokenManagement = () => {
             const transactionReceipt = await transactionResponse.wait()
             setIsOpen(true)
             setTopText('NFT mint succesful')
+            setBottomText('See Console For More Information')
             console.log('NFT Mint Succesful!')
             console.log("transactionReceipt", transactionReceipt)
             setUseEffectTrigger(prevState => !prevState)
@@ -138,6 +137,11 @@ const TokenManagement = () => {
   const handleNFTWrap = async () => {
     console.log('Clicked on NFT Wrap')
   }
+
+  // ! Need to add a 'check' that determines if each button is active or disabled! 
+  // ! For WBC it would be if userCanMint is true or false
+  // ! For NFT it would be if userERC20Balance is greater than or equal to 100
+  // ! For Governance it would be if user has a CrazyFace NFT
 
   const TOKEN_MANAGEMENT_MAP = [
     {
