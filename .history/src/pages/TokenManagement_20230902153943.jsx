@@ -9,7 +9,7 @@ const TokenManagement = () => {
   const { crazyFacesContract, userNFTBalance } = useCrazyFaces();
   const { userWallet } = useEthers();
   const { setUseEffectTrigger, turtleCatCoinContract, useEffectTrigger, userCanMint, userERC20Balance } = useTurtleCatCoin()
-  const { isOpen, topText, bottomText, showSlideOutModal, setIsOpen } = useSlideOutModal();
+  const { isOpen, topText, bottomText, showModal, setIsOpen } = useSlideOutModal();
 
   const [transactionHash, setTransactionHash] = useState('')
   const [nftMintModalIsOpen, setNftMintModalIsOpen] = useState(false)
@@ -17,9 +17,9 @@ const TokenManagement = () => {
   const [userCanMintNFT, setUserCanMintNFT] = useState(false)
   const [userCanWrapNFT, setUserCanWrapNFT] = useState(false)
 
-  // const [isOpen, setIsOpen] = useState(false)
-  // const [topText, setTopText] = useState('')
-  // const [bottomText, setBottomText] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
+  const [topText, setTopText] = useState('')
+  const [bottomText, setBottomText] = useState('')
 
   // ! REMOVE THIS WHEN NOT NEEDED
   const [tempFakeError, setTempFakeError] = useState(false)
@@ -73,99 +73,69 @@ const TokenManagement = () => {
           setTransactionHash(transactionReceipt.transactionHash) // ! NEED TO FIGURE OUT WHY I CREATED THIS STATE VARIABLE
           console.log('TokenManagement - transactionReceipt: ', transactionReceipt)
           setUseEffectTrigger(prevState => !prevState)
-          showSlideOutModal('ERC20 tokens minted successfully.')
+          setIsOpen(true)
+          setTopText('ERC20 tokens minted successfully.')
         }
       } catch (err) {
         console.error('Error minting ERC20 tokens: ' + err)
-        showSlideOutModal('Error minting ERC20 tokens', 'See Console For More Information')
+        setIsOpen(true)
+        setTopText('Error minting ERC20 tokens')
+        setBottomText('See Console For More Information')
       }
     }
   }
 
-  // const handleNFTMint = async (quantityToMint, setQuantityToMint) => {
-
-  //   if (turtleCatCoinContract && crazyFacesMintingContract) {
-  //     try {
-  //       const signatureWithArgs = "getWBCPrice(uint256)";
-  //       const totalNFTMintPrice = await crazyFacesMintingContract.functions[signatureWithArgs](quantityToMint);
-  //       const bigNumberValue = totalNFTMintPrice[0];
-
-  //       const approvalResponse = await turtleCatCoinContract.approve(CRAZYFACES_MINTING_CONTRACT_ADDRESS, totalNFTMintPrice.toString())
-  //       const approvalReceipt = await approvalResponse.wait()
-  //       showSlideOutModal('ERC20 amount approval success', 'See Console For More Information')
-  //       console.log("ERC20 amount approval success", approvalReceipt)
-  //       console.log("Approval status", approvalReceipt.status)
-  //       if (approvalReceipt.status === 1) {
-  //         try {
-  //           const transactionResponse = await crazyFacesMintingContract.buyNFTs(quantityToMint)
-  //           const transactionReceipt = await transactionResponse.wait()
-  //           showSlideOutModal('NFT mint succesful')
-  //           console.log('NFT Mint Succesful!')
-  //           console.log("transactionReceipt", transactionReceipt)
-  //           setUseEffectTrigger(prevState => !prevState)
-  //           setQuantityToMint(0)
-  //           setNftMintModalIsOpen(false)
-
-  //           // TODO: Create another 'modal' or pop-up that will slide out in the top right on the page and inform the user they have successfully minted ## nfts after the NftMintModal closes automatically.
-
-  //         } catch (err) {
-  //           console.error('Error minting NFTs: ', err)
-  //           showSlideOutModal('Error minting NFT', 'See Console For More Information')
-  //         }
-
-  //       } else {
-  //         console.log("Approval transaction failed");
-  //         showSlideOutModal('Approval transaction failed', 'See Console For More Information')
-  //         return null;
-  //       }
-  //     } catch (err) {
-  //       console.error('Error approving ERC20 tokens: ' + err)
-  //       showSlideOutModal('Error approving ERC20 tokens', 'See Console For More Information')
-  //     }
-  //   }
-  // }
-
-  const fetchNFTMintPrice = async (crazyFacesMintingContract, quantityToMint) => {
-    const signatureWithArgs = "getWBCPrice(uint256)";
-    const totalNFTMintPrice = await crazyFacesMintingContract.functions[signatureWithArgs](quantityToMint);
-    return totalNFTMintPrice[0];
-  };
-  
-  const approveERC20Amount = async (turtleCatCoinContract, amount, contractAddress) => {
-    const approvalResponse = await turtleCatCoinContract.approve(contractAddress, amount.toString());
-    const approvalReceipt = await approvalResponse.wait();
-    return approvalReceipt.status === 1;
-  };
-  
-  const mintNFTs = async (crazyFacesMintingContract, quantityToMint) => {
-    const transactionResponse = await crazyFacesMintingContract.buyNFTs(quantityToMint);
-    const transactionReceipt = await transactionResponse.wait();
-    return transactionReceipt;
-  };
-  
   const handleNFTMint = async (quantityToMint, setQuantityToMint) => {
-    try {
-      const mintPrice = await fetchNFTMintPrice(crazyFacesMintingContract, quantityToMint);
-      
-      const isApproved = await approveERC20Amount(turtleCatCoinContract, mintPrice, CRAZYFACES_MINTING_CONTRACT_ADDRESS);
-      if (!isApproved) {
-        showSlideOutModal('Approval transaction failed', 'See Console For More Information');
-        return;
+
+    if (turtleCatCoinContract && crazyFacesMintingContract) {
+      try {
+        const signatureWithArgs = "getWBCPrice(uint256)";
+        const totalNFTMintPrice = await crazyFacesMintingContract.functions[signatureWithArgs](quantityToMint);
+        const bigNumberValue = totalNFTMintPrice[0];
+
+        const approvalResponse = await turtleCatCoinContract.approve(CRAZYFACES_MINTING_CONTRACT_ADDRESS, totalNFTMintPrice.toString())
+        const approvalReceipt = await approvalResponse.wait()
+        setIsOpen(true)
+        setTopText('ERC20 amount approval success')
+        setBottomText('See Console For More Information')
+        console.log("ERC20 amount approval success", approvalReceipt)
+        console.log("Approval status", approvalReceipt.status)
+        if (approvalReceipt.status === 1) {
+          try {
+            const transactionResponse = await crazyFacesMintingContract.buyNFTs(quantityToMint)
+            const transactionReceipt = await transactionResponse.wait()
+            setIsOpen(true)
+            setTopText('NFT mint succesful')
+            console.log('NFT Mint Succesful!')
+            console.log("transactionReceipt", transactionReceipt)
+            setUseEffectTrigger(prevState => !prevState)
+            setQuantityToMint(0)
+            setNftMintModalIsOpen(false)
+
+            // TODO: Create another 'modal' or pop-up that will slide out in the top right on the page and inform the user they have successfully minted ## nfts after the NftMintModal closes automatically.
+
+          } catch (err) {
+            console.error('Error minting NFTs: ', err)
+            setIsOpen(true)
+            setTopText('Error minting NFT')
+            setBottomText('See Console For More Information')
+          }
+
+        } else {
+          console.log("Approval transaction failed");
+          setIsOpen(true)
+          setTopText('Approval transaction failed')
+          setBottomText('See Console For More Information')
+          return null;
+        }
+      } catch (err) {
+        console.error('Error approving ERC20 tokens: ' + err)
+        setIsOpen(true)
+        setTopText('Error approving ERC20 tokens')
+        setBottomText('See Console For More Information')
       }
-  
-      const mintReceipt = await mintNFTs(crazyFacesMintingContract, quantityToMint);
-      showSlideOutModal('NFT mint successful');
-      console.log('NFT Mint Succesful!', mintReceipt);
-      
-      setUseEffectTrigger(prevState => !prevState);
-      setQuantityToMint(0);
-      setNftMintModalIsOpen(false);
-  
-    } catch (err) {
-      console.error('Error in NFT minting process: ', err);
-      showSlideOutModal('Error in NFT minting process', 'See Console For More Information');
     }
-  };
+  }
 
   const handleNFTWrap = async () => {
     console.log('Clicked on NFT Wrap')
